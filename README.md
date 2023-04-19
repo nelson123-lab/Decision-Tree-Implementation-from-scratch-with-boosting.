@@ -9,4 +9,10 @@ We now need an algorithm which splits the data according to the maximum informat
 
 ## Random Forest
 The random forest algorithm works based on maximum votes from the different decision trees outputs.
-Two random process takes place here random feature selection and random sampling with replacement which results in the name random forest.
+Two random process takes place here random feature selection and random sampling with replacement which results in the name random forest. ( Bootstrapping )
+
+The process of finding the maximum votes from the decision trees is called aggregation.
+
+## Adaboost
+
+
