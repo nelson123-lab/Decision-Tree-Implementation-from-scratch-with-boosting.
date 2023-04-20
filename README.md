@@ -18,6 +18,6 @@ The process of finding the maximum votes from the decision trees is called aggre
 
 
 
-The training and testing of the data using the manually made decsion tree and random forest was performed on titanic dataset. The dataset was preprocessed using the Feature engineering steps taken from Sina and Anisotropic.
+The training and testing of the data using the manually made decsion tree and random forest was performed on titanic dataset. The dataset was preprocessed using the Feature engineering steps taken from Sina and Anisotropic. Link(https://www.kaggle.com/code/dmilla/introduction-to-decision-trees-titanic-dataset)
 
 The titanic dataset itself is having slight variations from different sources. The data that I loaded from seaborn was having in columns names that are from kaggle. The data I downloaded from fetch_openml was only having a difference of lower cases for the column names from the kaggle dataset.
