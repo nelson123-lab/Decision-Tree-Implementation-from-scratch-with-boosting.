@@ -16,3 +16,6 @@ The process of finding the maximum votes from the decision trees is called aggre
 ## Adaboost
 
 
+
+
+The training and testing of the data using the manually made decsion tree and random forest was performed on titanic dataset. The dataset was preprocessed using the Feature engineering steps taken from Sina and Anisotropic.
