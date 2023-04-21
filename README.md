@@ -15,8 +15,11 @@ The process of finding the maximum votes from the decision trees is called aggre
 
 ## Adaboost
 
+In AdaBoost, each weak learner is assigned a weight based on its performance in the previous iteration. The amount of say, also known as the weight, given to each weak learner is determined by its ability to correctly classify the training examples.
 
+Specifically, the weight assigned to each weak learner in AdaBoost is proportional to its accuracy in classifying the training examples. The more accurate the weak learner is, the higher its weight will be. This means that the weak learners with higher weights will have a greater influence on the final classification result.
 
+During the boosting process, each weak learner is combined with the previously selected learners to form a strong classifier. The amount of say of each weak learner in the final classification decision is determined by the weights assigned to it during the boosting process. The final classification decision is made by combining the predictions of all the weak learners weighted by their corresponding weights.
 
 The training and testing of the data using the manually made decsion tree and random forest was performed on titanic dataset. The dataset was preprocessed using the Feature engineering steps taken from Sina and Anisotropic. Link(https://www.kaggle.com/code/dmilla/introduction-to-decision-trees-titanic-dataset)
 
