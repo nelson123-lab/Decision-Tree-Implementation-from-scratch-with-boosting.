@@ -25,4 +25,3 @@ The training and testing of the data using the manually made decsion tree and ra
 
 The titanic dataset itself is having slight variations from different sources. The data that I loaded from seaborn was having in columns names that are from kaggle. The data I downloaded from fetch_openml was only having a difference of lower cases for the column names from the kaggle dataset.
 
-For the adaboost we can make stumps of decision trees.
