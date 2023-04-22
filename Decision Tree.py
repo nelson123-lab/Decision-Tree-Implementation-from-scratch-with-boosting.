@@ -94,4 +94,7 @@ class DecisionTreeClassifier:
             return self._traverse_tree(x, node['left'])
         else:
             return self._traverse_tree(x, node['right'])
-    
+
+    def Accuray(self, X_test, y_test):
+       y_pred = self.predict(X_test)
+       return np.mean(y_pred == y_test)
