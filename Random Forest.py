@@ -1,35 +1,36 @@
-import numpy as np
-from collections import Counter
-
 class RandomForest:
-    def __init__(self, n_trees=10, max_depth=10, min_samples_split=2, n_feature=None):
-        self.n_trees = n_trees
+    def __init__(self, max_depth,criterion,num_trees=100,min_features =4):
+        #self.classifier = classifier
+        self.num_trees = num_trees
+        self.min_features = min_features
         self.max_depth=max_depth
-        self.min_samples_split=min_samples_split
-        self.n_features=n_feature
-        self.trees = []
+        self.criterion=criterion
+        self.forest = []
 
     def fit(self, X, y):
-        self.trees = []
-        for _ in range(self.n_trees):
-            tree = DecisionTreeClassifier(criterion = 'gini', max_depth=self.max_depth,
-                            min_samples_split=self.min_samples_split)
-            X_sample, y_sample = self._bootstrap_samples(X, y)
-            tree.fit(X_sample, y_sample)
-            self.trees.append(tree)
-
-    def _bootstrap_samples(self, X, y):
-        n_samples = X.shape[0]
-        idxs = np.random.choice(n_samples, n_samples, replace=True)
-        return X[idxs], y[idxs]
-
-    def _most_common_label(self, y):
-        counter = Counter(y)
-        most_common = counter.most_common(1)[0][0]
-        return most_common
+        num_features = X.shape[1]
+        for i in range(self.num_trees):
+            # Sampling with replacement
+            indices = np.random.choice(X.shape[0], size=X.shape[0], replace=True)
+            X_sample = X[indices]
+            y_sample = y[indices]
+            # Selecting random subset of features
+            num_selected_features = np.random.randint(self.min_features, num_features + 1)
+            selected_features = np.random.choice(num_features, size=num_selected_features, replace=False)
+            X_sample = X_sample[:, selected_features]
+            # Train decision tree
+            clf = DecisionTreeClassifier(max_depth=self.max_depth,criterion=self.criterion)
+            clf.fit(X_sample, y_sample)
+            self.forest.append((clf, selected_features))
 
     def predict(self, X):
-        predictions = np.array([tree.predict(X) for tree in self.trees])
-        tree_preds = np.swapaxes(predictions, 0, 1)
-        predictions = np.array([self._most_common_label(pred) for pred in tree_preds])
-        return predictions
+        votes = np.zeros((X.shape[0],))
+        for clf, selected_features in self.forest:
+            X_sample = X[:, selected_features]
+            pred = clf.predict(X_sample)
+            votes[pred == 1] += 1
+        return (votes >= (len(self.forest) / 2)).astype(int)
+    
+    def Accuray(self, X_test, y_test):
+       y_pred = self.predict(X_test)
+       return np.mean(y_pred == y_test)
