@@ -7,6 +7,9 @@ X, y = fetch_openml("titanic", version=1, as_frame=True, return_X_y=True)
 X.drop(['boat', 'body', 'home.dest'], axis=1, inplace=True)
 X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=0.2)
 
+y_train = y_train.astype(int)
+y_test= y_test.astype(int)
+
 full_data = [X_train, X_test]
 X_train['Has_Cabin'] = X_train["cabin"].apply(lambda x: 0 if type(x) == float else 1)
 X_test['Has_Cabin'] = X_test["cabin"].apply(lambda x: 0 if type(x) == float else 1)
