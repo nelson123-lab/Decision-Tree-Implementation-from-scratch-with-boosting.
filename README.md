@@ -28,4 +28,4 @@ The titanic dataset itself is having slight variations from different sources. T
 Current issues
 - Decision tree and adaboost are performing similar way.
 - Adaboost is performing poorly than decision tree and random forest.
-- ddkfjsdk
+- perdict function of random forest is not working properly.
