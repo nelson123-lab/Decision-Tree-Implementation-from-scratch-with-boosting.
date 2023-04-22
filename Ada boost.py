@@ -1,12 +1,12 @@
-import numpy as np
-
 class AdaBoost:
-    def __init__(self, base_estimator, n_estimators=50, learning_rate=1):
+    def __init__(self, base_estimator, n_estimators=50, learning_rate=1, max_depth = None, criterion = None):
         self.base_estimator = base_estimator
         self.n_estimators = n_estimators
         self.learning_rate = learning_rate
         self.estimators = []
         self.weights = []
+        self.max_depth = max_depth
+        self.criterion = criterion
         
     def fit(self, X, y):
         # Initialize sample weights
@@ -14,7 +14,7 @@ class AdaBoost:
         
         for i in range(self.n_estimators):
             # Train a weak learner on the training set using the current sample weights
-            estimator = self.base_estimator()
+            estimator = self.base_estimator(max_depth = self.max_depth, criterion = self.criterion)
             estimator.fit(X, y)
             
             # Compute the error of the weak learner on the training set
@@ -38,3 +38,7 @@ class AdaBoost:
         
         # Make predictions on the testing set using the final classifier
         return np.sign(y_pred)
+
+    def Accuray(self, X_test, y_test):
+       y_pred = self.predict(X_test)
+       return np.mean(y_pred == y_test)
