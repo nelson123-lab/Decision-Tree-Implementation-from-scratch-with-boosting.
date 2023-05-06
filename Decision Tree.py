@@ -125,3 +125,10 @@ class DecisionTree:
         y_pred = self.predict(X_test)
         # Returing the accuracy of the prediction.
         return round(np.mean(y_pred == y_test)*100, 3)
+    
+# Testing
+# Checking the accuracy with the Criterion as Gini Impurity.
+Tree = DecisionTree(criterion='gini', max_depth = 5, min_samples_split = 10, min_samples_leaf = 2)
+Tree.fit(X_train.values, y_train.values)
+Accuracy = Tree.Accuracy(X_test.values, y_test.values)
+print('Accuracy',Accuracy)
