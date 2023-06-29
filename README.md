@@ -29,3 +29,6 @@ Current issues
 - Decision tree and adaboost are performing similar way.
 - Adaboost is performing poorly than decision tree and random forest.
 - perdict function of random forest is not working properly.
+
+## Note
+**This repository serves as a demonstration of my work for the Machine learning coursework. Kindly refrain from using the exact code provided here in any academic assignments. Its purpose is to provide a reference and facilitate learning for others.**
